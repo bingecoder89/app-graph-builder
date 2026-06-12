@@ -1,13 +1,14 @@
-import { ThemeProvider } from "./components/theme-provider";
 import TopBar from "./components/TopBar";
+import LeftRail from "./components/LeftRail";
+import Canvas from "./components/Canvas";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div>
-        <TopBar />
-      </div>
-    </ThemeProvider>
+    <div className="h-screen overflow-hidden">
+      <Canvas />
+      <TopBar />
+      <LeftRail />
+    </div>
   );
 }
 
