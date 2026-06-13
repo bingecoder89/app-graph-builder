@@ -9,7 +9,7 @@ import { BsFillGrid1X2Fill } from "react-icons/bs";
 
 function LeftRail() {
   return (
-    <div className="absolute left-5 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-10">
+    <div className="absolute top-1/3 left-5 flex flex-col gap-1">
       <Button variant="outline">
         <FaGithub />
       </Button>

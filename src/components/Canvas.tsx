@@ -14,12 +14,16 @@ const initialNodes = [
     id: "n1",
     data: { label: "Node 1" },
     position: { x: 0, y: 0 },
-    type: "input",
   },
   {
     id: "n2",
     data: { label: "Node 2" },
     position: { x: 100, y: 100 },
+  },
+  {
+    id: "n3",
+    data: { label: "Node 3" },
+    position: { x: 200, y: 200 },
   },
 ];
 

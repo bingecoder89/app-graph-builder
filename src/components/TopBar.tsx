@@ -2,22 +2,27 @@ import { RiMoonClearLine, RiRemixFill, RiSunLine } from "@remixicon/react";
 import { RiShareLine } from "@remixicon/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
+import { ButtonGroup } from "./ui/button-group";
 
 function TopBar() {
   return (
-    <div className="flex justify-between items-center absolute top-4 left-4 right-4 z-10">
-      <div className="flex items-center gap-2">
+    <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-4 py-2.5">
+      <div className="flex items-center gap-1.5">
         <RiRemixFill className="bg-white" size={32} />
-        <p className="text-xl text-white">Graphy</p>
+        <p className="text-xl text-white font-bold">Graphy</p>
       </div>
-      <div className="flex items-center gap-1 outline-1 p-0.5 rounded-md">
-        <Button>
+      <div className="flex items-center gap-1 p-0.5 outline-1 rounded-md">
+        <Button variant="outline">
           <RiShareLine />
         </Button>
-        <Button>
-          <RiMoonClearLine />
-          <RiSunLine />
-        </Button>
+        <ButtonGroup>
+          <Button variant="outline">
+            <RiMoonClearLine />
+          </Button>
+          <Button variant="outline">
+            <RiSunLine />
+          </Button>
+        </ButtonGroup>
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
