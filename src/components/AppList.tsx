@@ -13,10 +13,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useStore } from "../store/useStore";
 
 function AppList() {
+  const setSelectedAppId = useStore((state) => state.setSelectedAppId);
   return (
-    <Select>
+    <Select
+      onValueChange={(value) => {
+        setSelectedAppId(value);
+      }}
+    >
       <SelectTrigger className="w-full max-w-48 mb-2">
         <SelectValue placeholder="Select an Application" />
       </SelectTrigger>

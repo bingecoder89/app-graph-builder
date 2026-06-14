@@ -2,11 +2,15 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "./ui/badge";
 import { Input } from "./ui/input";
+import { useStore } from "../store/useStore";
 
 function NodeInspector() {
+  const selectedNodeId = useStore((state) => state.selectedNodeId);
   return (
     <div className="bg-gray-200 w-xs flex flex-col gap-2 p-4 rounded-md">
-      <h1 className="text-xl font-bold">Postgres</h1>
+      <h1 className="text-xl font-bold">
+        {selectedNodeId ?? "No Node Selected"}
+      </h1>
       <Badge className="bg-green-500">Healthy</Badge>
       <Tabs>
         <TabsList className="border-2 border-gray-200">

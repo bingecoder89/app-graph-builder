@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { useStore } from "../store/useStore";
 import {
   ReactFlow,
   Controls,
@@ -32,6 +33,7 @@ const initialEdges = [];
 function Canvas() {
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
+  const setSelectedNodeId = useStore((state) => state.setSelectedNodeId);
 
   const onNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -46,9 +48,14 @@ function Canvas() {
     [],
   );
 
+  const onNodeClick = (_, node) => {
+    setSelectedNodeId(node.id);
+  };
+
   return (
     <div className="w-full h-full">
       <ReactFlow
+        onNodeClick={onNodeClick}
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
