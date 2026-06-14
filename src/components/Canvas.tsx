@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import { useStore } from "../store/useStore";
 import {
   ReactFlow,
@@ -10,43 +10,18 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
-const initialNodes = [
-  {
-    id: "n1",
-    data: { label: "Node 1" },
-    position: { x: 0, y: 0 },
-  },
-  {
-    id: "n2",
-    data: { label: "Node 2" },
-    position: { x: 100, y: 100 },
-  },
-  {
-    id: "n3",
-    data: { label: "Node 3" },
-    position: { x: 200, y: 200 },
-  },
-];
-
-const initialEdges = [];
-
 function Canvas() {
-  const [nodes, setNodes] = useState(initialNodes);
-  const [edges, setEdges] = useState(initialEdges);
+  const nodes = useStore((state) => state.nodes);
+  const setNodes = useStore((state) => state.setNodes);
+  const edges = useStore((state) => state.edges);
+  const setEdges = useStore((state) => state.setEdges);
   const setSelectedNodeId = useStore((state) => state.setSelectedNodeId);
 
-  const onNodesChange = useCallback(
-    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    [],
-  );
-  const onEdgesChange = useCallback(
-    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-    [],
-  );
-  const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    [],
-  );
+  const onNodesChange = (changes) => setNodes(applyNodeChanges(changes, nodes));
+
+  const onEdgesChange = (changes) => setEdges(applyEdgeChanges(changes, edges));
+
+  const onConnect = (params) => setEdges(addEdge(params, edges));
 
   const onNodeClick = (_, node) => {
     setSelectedNodeId(node.id);

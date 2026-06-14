@@ -16,9 +16,11 @@ import {
 import { useStore } from "../store/useStore";
 
 function AppList() {
+  const selectedAppId = useStore((state) => state.selectedAppId);
   const setSelectedAppId = useStore((state) => state.setSelectedAppId);
   return (
     <Select
+      value={selectedAppId}
       onValueChange={(value) => {
         setSelectedAppId(value);
       }}

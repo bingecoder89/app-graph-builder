@@ -6,13 +6,15 @@ import { useStore } from "../store/useStore";
 
 function NodeInspector() {
   const selectedNodeId = useStore((state) => state.selectedNodeId);
+  const activeTab = useStore((state) => state.activeTab);
+  const setActiveTab = useStore((state) => state.setActiveTab);
   return (
     <div className="bg-gray-200 w-xs flex flex-col gap-2 p-4 rounded-md">
       <h1 className="text-xl font-bold">
         {selectedNodeId ?? "No Node Selected"}
       </h1>
       <Badge className="bg-green-500">Healthy</Badge>
-      <Tabs>
+      <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value)}>
         <TabsList className="border-2 border-gray-200">
           <TabsTrigger value="config">Config</TabsTrigger>
           <TabsTrigger value="runtime">Runtime</TabsTrigger>
