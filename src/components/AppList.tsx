@@ -1,3 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
+import { getApplications } from "../api/applications.js";
+
 import { IoIosBulb } from "react-icons/io";
 import { FaJava } from "react-icons/fa";
 import { FaPython } from "react-icons/fa";
@@ -15,7 +18,19 @@ import {
 } from "@/components/ui/select";
 import { useStore } from "../store/useStore";
 
+const icons = {
+  golang: FaGolang,
+  java: FaJava,
+  python: FaPython,
+  ruby: DiRuby,
+  go: IoIosBulb,
+};
+
 function AppList() {
+  const query = useQuery({
+    queryKey: ["applications"],
+    queryFn: getApplications,
+  });
   const selectedAppId = useStore((state) => state.selectedAppId);
   const setSelectedAppId = useStore((state) => state.setSelectedAppId);
   return (
@@ -31,21 +46,14 @@ function AppList() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Applications</SelectLabel>
-          <SelectItem value="supertokens-golang">
-            <IoIosBulb /> supertokens-golang
-          </SelectItem>
-          <SelectItem value="supertokens-java">
-            <FaJava /> supertokens-java
-          </SelectItem>
-          <SelectItem value="supertokens-python">
-            <FaPython /> supertokens-python
-          </SelectItem>
-          <SelectItem value="supertokens-ruby">
-            <DiRuby /> supertokens-ruby
-          </SelectItem>
-          <SelectItem value="supertokens-go">
-            <FaGolang /> supertokens-go
-          </SelectItem>
+          {query.data?.map((application) => {
+            const Icon = icons[application.type];
+            return (
+              <SelectItem value={application.id} key={application.id}>
+                <Icon /> {application.name}
+              </SelectItem>
+            );
+          })}
         </SelectGroup>
       </SelectContent>
     </Select>
