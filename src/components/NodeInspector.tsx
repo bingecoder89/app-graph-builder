@@ -1,18 +1,61 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { RiPencilLine } from "@remixicon/react";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useStore } from "../store/useStore";
+import { useState } from "react";
 
 function NodeInspector() {
+  const nodes = useStore((state) => state.nodes);
+  const setNodes = useStore((state) => state.setNodes);
   const selectedNodeId = useStore((state) => state.selectedNodeId);
   const activeTab = useStore((state) => state.activeTab);
   const setActiveTab = useStore((state) => state.setActiveTab);
+  const selectedNode = nodes.find((node) => node.id === selectedNodeId);
+  const [isEditing, setIsEditing] = useState(false);
+  const [newLabel, setNewLabel] = useState("");
+
+  const handleOnBlur = () => {
+    const updatedNodes = nodes.map((node) => {
+      return node.id === selectedNodeId
+        ? {
+            ...node,
+            data: {
+              label: newLabel,
+            },
+          }
+        : node;
+    });
+    setNodes(updatedNodes);
+    setIsEditing(false);
+  };
   return (
     <div className="bg-gray-200 w-xs flex flex-col gap-2 p-4 rounded-md">
-      <h1 className="text-xl font-bold">
-        {selectedNodeId ?? "No Node Selected"}
-      </h1>
+      <div className="flex items-center gap-1.5">
+        {isEditing ? (
+          <Input
+            className="border-2 border-gray-400"
+            value={newLabel}
+            onChange={(e) => setNewLabel(e.target.value)}
+            onBlur={handleOnBlur}
+          />
+        ) : (
+          <h1 className="text-xl font-bold">{selectedNode?.data.label}</h1>
+        )}
+        {!!selectedNodeId && (
+          <Button
+            variant="outline"
+            onClick={() => {
+              setNewLabel(selectedNode?.data.label);
+              setIsEditing(true);
+            }}
+          >
+            <RiPencilLine />
+          </Button>
+        )}
+      </div>
       <Badge className="bg-green-500">Healthy</Badge>
       <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value)}>
         <TabsList className="border-2 border-gray-200">
