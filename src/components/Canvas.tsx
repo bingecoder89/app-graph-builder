@@ -19,17 +19,30 @@ function Canvas() {
   const edges = useStore((state) => state.edges);
   const setEdges = useStore((state) => state.setEdges);
   const setSelectedNodeId = useStore((state) => state.setSelectedNodeId);
-  const query = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["graphs", selectedAppId],
     queryFn: () => getGraphs(selectedAppId),
     enabled: !!selectedAppId,
   });
+
   useEffect(() => {
-    if (query.data) {
-      setNodes(query.data.nodes);
-      setEdges(query.data.edges);
+    if (data) {
+      setNodes(data.nodes);
+      setEdges(data.edges);
     }
-  }, [query.data]);
+  }, [data]);
+
+  if (isLoading) {
+    return (
+      <ReactFlow colorMode="system">
+        <Background />
+      </ReactFlow>
+    );
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   const onNodesChange = (changes) => setNodes(applyNodeChanges(changes, nodes));
 

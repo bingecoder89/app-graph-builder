@@ -27,12 +27,20 @@ const icons = {
 };
 
 function AppList() {
-  const query = useQuery({
+  const selectedAppId = useStore((state) => state.selectedAppId);
+  const setSelectedAppId = useStore((state) => state.setSelectedAppId);
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["applications"],
     queryFn: getApplications,
   });
-  const selectedAppId = useStore((state) => state.selectedAppId);
-  const setSelectedAppId = useStore((state) => state.setSelectedAppId);
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
   return (
     <Select
       value={selectedAppId}
@@ -46,7 +54,7 @@ function AppList() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Applications</SelectLabel>
-          {query.data?.map((application) => {
+          {data?.map((application) => {
             const Icon = icons[application.type];
             return (
               <SelectItem value={application.id} key={application.id}>
