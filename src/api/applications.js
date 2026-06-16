@@ -1,5 +1,5 @@
 import { applications } from "../mocks/applications";
 
 export const getApplications = async () => {
-  return applications;
+  return await applications;
 };

@@ -16,23 +16,7 @@ export const useStore = create((set) => ({
     set({
       activeTab: tab,
     }),
-  nodes: [
-    {
-      id: "n1",
-      data: { label: "Node 1" },
-      position: { x: 0, y: 0 },
-    },
-    {
-      id: "n2",
-      data: { label: "Node 2" },
-      position: { x: 100, y: 100 },
-    },
-    {
-      id: "n3",
-      data: { label: "Node 3" },
-      position: { x: 200, y: 200 },
-    },
-  ],
+  nodes: [],
   setNodes: (nodesData) =>
     set({
       nodes: nodesData,
