@@ -16,6 +16,7 @@ function NodeInspector() {
   const selectedNode = nodes.find((node) => node.id === selectedNodeId);
   const [isEditing, setIsEditing] = useState(false);
   const [newLabel, setNewLabel] = useState("");
+  const [sliderVal, setSliderVal] = useState(40);
 
   const handleOnBlur = () => {
     const updatedNodes = nodes.map((node) => {
@@ -64,9 +65,16 @@ function NodeInspector() {
         </TabsList>
       </Tabs>
       <div className="flex gap-4">
-        <Slider defaultValue={[75]} max={100} step={1} className="w-[70%]" />
+        <Slider
+          value={[sliderVal]}
+          onValueChange={(value) => setSliderVal(value)}
+          max={100}
+          step={1}
+          className="w-[70%]"
+        />
         <Input
-          placeholder="0.02"
+          value={sliderVal}
+          onChange={(e) => setSliderVal(Number(e.target.value))}
           className="w-[30%] border-2 border-gray-400"
         />
       </div>
