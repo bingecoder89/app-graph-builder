@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useStore } from "../store/useStore";
+import { Spinner } from "./ui/spinner.js";
 
 const icons = {
   golang: FaGolang,
@@ -35,7 +36,7 @@ function AppList() {
   });
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <Spinner className="size-6" />;
   }
 
   if (isError) {
