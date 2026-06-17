@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getApplications } from "../api/applications.js";
+import { getApplications } from "../api/applications";
 
 import { IoIosBulb } from "react-icons/io";
 import { FaJava } from "react-icons/fa";
@@ -44,7 +44,7 @@ function AppList() {
   }
   return (
     <Select
-      value={selectedAppId}
+      value={selectedAppId ?? ""}
       onValueChange={(value) => {
         setSelectedAppId(value);
       }}
@@ -55,8 +55,8 @@ function AppList() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Applications</SelectLabel>
-          {data?.map((application) => {
-            const Icon = icons[application.type];
+          {(data as any[])?.map((application: any) => {
+            const Icon = icons[application.type as keyof typeof icons];
             return (
               <SelectItem value={application.id} key={application.id}>
                 <Icon /> {application.name}

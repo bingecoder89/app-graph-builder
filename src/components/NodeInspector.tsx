@@ -67,7 +67,7 @@ function NodeInspector() {
       <div className="flex gap-4">
         <Slider
           value={[sliderVal]}
-          onValueChange={(value) => setSliderVal(value)}
+          onValueChange={(value: any) => setSliderVal(value)}
           max={100}
           step={1}
           className="w-[70%]"

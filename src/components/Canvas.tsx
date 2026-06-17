@@ -9,7 +9,7 @@ import {
   addEdge,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { getGraphs } from "../api/graphs.js";
+import { getGraphs } from "../api/graphs";
 import { useEffect } from "react";
 
 function Canvas() {
@@ -27,8 +27,8 @@ function Canvas() {
 
   useEffect(() => {
     if (data) {
-      setNodes(data.nodes);
-      setEdges(data.edges);
+      setNodes((data as any).nodes);
+      setEdges((data as any).edges);
     }
   }, [data]);
 
@@ -44,13 +44,15 @@ function Canvas() {
     return <span>Error: {error.message}</span>;
   }
 
-  const onNodesChange = (changes) => setNodes(applyNodeChanges(changes, nodes));
+  const onNodesChange = (changes: any) =>
+    setNodes(applyNodeChanges(changes, nodes));
 
-  const onEdgesChange = (changes) => setEdges(applyEdgeChanges(changes, edges));
+  const onEdgesChange = (changes: any) =>
+    setEdges(applyEdgeChanges(changes, edges));
 
-  const onConnect = (params) => setEdges(addEdge(params, edges));
+  const onConnect = (params: any) => setEdges(addEdge(params, edges));
 
-  const onNodeClick = (_, node) => {
+  const onNodeClick = (_: any, node: any) => {
     setSelectedNodeId(node.id);
   };
 
