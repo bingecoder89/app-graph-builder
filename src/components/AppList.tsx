@@ -48,7 +48,7 @@ function AppList() {
         setSelectedAppId(value);
       }}
     >
-      <SelectTrigger className="w-full max-w-48 mb-2">
+      <SelectTrigger className="w-[85%] mb-2 max-sm:mx-auto max-sm:my-3">
         <SelectValue placeholder="Select an Application" />
       </SelectTrigger>
       <SelectContent>

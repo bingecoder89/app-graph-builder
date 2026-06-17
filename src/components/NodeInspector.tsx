@@ -32,7 +32,7 @@ function NodeInspector() {
     setIsEditing(false);
   };
   return (
-    <div className="bg-gray-200 w-xs flex flex-col gap-2 p-4 rounded-md">
+    <div className="bg-gray-200 w-full flex flex-col gap-2 p-4 rounded-md max-sm:w-[85%] max-sm:mx-auto">
       <div className="flex items-center gap-1.5">
         {isEditing ? (
           <Input
@@ -67,7 +67,7 @@ function NodeInspector() {
         <Slider defaultValue={[75]} max={100} step={1} className="w-[70%]" />
         <Input
           placeholder="0.02"
-          className="w-[20%] border-2 border-gray-400"
+          className="w-[30%] border-2 border-gray-400"
         />
       </div>
     </div>
