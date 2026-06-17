@@ -37,7 +37,7 @@ function TopBar() {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <Drawer direction="right">
-          <DrawerTrigger>
+          <DrawerTrigger asChild>
             <Button className="md:hidden" variant="outline">
               <RiMenu5Line />
             </Button>

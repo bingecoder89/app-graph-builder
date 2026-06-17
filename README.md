@@ -2,6 +2,10 @@
 
 A ReactFlow-based application graph builder that allows users to visualize, inspect, and manage application graphs through an interactive canvas and inspector panel.
 
+# Live Demo
+
+Link: https://graphy11.netlify.app/
+
 ## Tech Stack
 
 - React
@@ -14,8 +18,6 @@ A ReactFlow-based application graph builder that allows users to visualize, insp
 - shadcn/ui
 
 ---
-
-## Features
 
 ### Layout
 
@@ -55,8 +57,6 @@ A ReactFlow-based application graph builder that allows users to visualize, insp
 - TanStack Query for application data
 - TanStack Query for graph data
 - Loading state handling with spinner UI
-
----
 
 ---
 
@@ -190,28 +190,6 @@ Some areas can be further improved with stricter TypeScript typing and type defi
 - Advanced filtering and search
 - Stronger TypeScript coverage
 - Enhanced error handling
-
----
-
-## Evaluation Requirements Covered
-
-✅ Component separation
-
-✅ Zustand state management
-
-✅ ReactFlow integration
-
-✅ Application selection
-
-✅ Node selection
-
-✅ Node deletion
-
-✅ Editable node labels
-
-✅ Loading state support
-
-✅ Responsive layout
 
 ---
 
