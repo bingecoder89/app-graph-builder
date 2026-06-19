@@ -28,8 +28,8 @@ const icons = {
 };
 
 function AppList() {
-  const selectedAppId = useStore((state) => state.selectedAppId);
-  const setSelectedAppId = useStore((state) => state.setSelectedAppId);
+  const selectedAppId = useStore((state: any) => state.selectedAppId);
+  const setSelectedAppId = useStore((state: any) => state.setSelectedAppId);
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["applications"],
     queryFn: getApplications,

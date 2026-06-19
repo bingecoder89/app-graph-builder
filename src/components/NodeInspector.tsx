@@ -8,18 +8,18 @@ import { useStore } from "../store/useStore";
 import { useState } from "react";
 
 function NodeInspector() {
-  const nodes = useStore((state) => state.nodes);
-  const setNodes = useStore((state) => state.setNodes);
-  const selectedNodeId = useStore((state) => state.selectedNodeId);
-  const activeTab = useStore((state) => state.activeTab);
-  const setActiveTab = useStore((state) => state.setActiveTab);
-  const selectedNode = nodes.find((node) => node.id === selectedNodeId);
+  const nodes = useStore((state: any) => state.nodes);
+  const setNodes = useStore((state: any) => state.setNodes);
+  const selectedNodeId = useStore((state: any) => state.selectedNodeId);
+  const activeTab = useStore((state: any) => state.activeTab);
+  const setActiveTab = useStore((state: any) => state.setActiveTab);
+  const selectedNode = nodes.find((node: any) => node.id === selectedNodeId);
   const [isEditing, setIsEditing] = useState(false);
   const [newLabel, setNewLabel] = useState("");
   const [sliderVal, setSliderVal] = useState(40);
 
   const handleOnBlur = () => {
-    const updatedNodes = nodes.map((node) => {
+    const updatedNodes = nodes.map((node: any) => {
       return node.id === selectedNodeId
         ? {
             ...node,

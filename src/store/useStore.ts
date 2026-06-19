@@ -1,45 +1,28 @@
 import { create } from "zustand";
 
-interface StoreState {
-  selectedAppId: string | null;
-  setSelectedAppId: (appId: string) => void;
-
-  selectedNodeId: string | null;
-  setSelectedNodeId: (nodeId: string) => void;
-
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-
-  nodes: any[];
-  setNodes: (nodesData: any[]) => void;
-
-  edges: any[];
-  setEdges: (edgesData: any[]) => void;
-}
-
-export const useStore = create<StoreState>((set) => ({
+export const useStore = create((set) => ({
   selectedAppId: null,
-  setSelectedAppId: (appId) =>
+  setSelectedAppId: (appId: any) =>
     set({
       selectedAppId: appId,
     }),
   selectedNodeId: null,
-  setSelectedNodeId: (nodeId) =>
+  setSelectedNodeId: (nodeId: any) =>
     set({
       selectedNodeId: nodeId,
     }),
   activeTab: "config",
-  setActiveTab: (tab) =>
+  setActiveTab: (tab: any) =>
     set({
       activeTab: tab,
     }),
   nodes: [],
-  setNodes: (nodesData) =>
+  setNodes: (nodesData: any) =>
     set({
       nodes: nodesData,
     }),
   edges: [],
-  setEdges: (edgesData) =>
+  setEdges: (edgesData: any) =>
     set({
       edges: edgesData,
     }),

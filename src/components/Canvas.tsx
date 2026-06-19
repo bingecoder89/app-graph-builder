@@ -13,12 +13,12 @@ import { getGraphs } from "../api/graphs";
 import { useEffect } from "react";
 
 function Canvas() {
-  const selectedAppId = useStore((state) => state.selectedAppId);
-  const nodes = useStore((state) => state.nodes);
-  const setNodes = useStore((state) => state.setNodes);
-  const edges = useStore((state) => state.edges);
-  const setEdges = useStore((state) => state.setEdges);
-  const setSelectedNodeId = useStore((state) => state.setSelectedNodeId);
+  const selectedAppId = useStore((state: any) => state.selectedAppId);
+  const nodes = useStore((state: any) => state.nodes);
+  const setNodes = useStore((state: any) => state.setNodes);
+  const edges = useStore((state: any) => state.edges);
+  const setEdges = useStore((state: any) => state.setEdges);
+  const setSelectedNodeId = useStore((state: any) => state.setSelectedNodeId);
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["graphs", selectedAppId],
     queryFn: () => getGraphs(selectedAppId),
@@ -29,6 +29,7 @@ function Canvas() {
     if (data) {
       setNodes((data as any).nodes);
       setEdges((data as any).edges);
+      setSelectedNodeId(null);
     }
   }, [data]);
 
